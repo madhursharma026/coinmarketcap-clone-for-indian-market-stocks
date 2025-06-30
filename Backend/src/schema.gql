@@ -1,0 +1,101 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CompanyMeta {
+  totalCount: Int!
+}
+
+type Fundamentals {
+  id: Int!
+  company: Company!
+  pe_ratio: Float
+  pb_ratio: Float
+  roe: Float
+  roce: Float
+  debt_to_equity: Float
+  dividend_yield: Float
+  sales_growth_3yr: Float
+  profit_growth_3yr: Float
+  sales_growth_5yr: Float
+  profit_growth_5yr: Float
+  last_updated: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Price {
+  id: Int!
+  company: Company!
+  current_price: Float!
+  high_52w: Float!
+  low_52w: Float!
+  last_updated: DateTime!
+}
+
+type Company {
+  id: Int!
+  name: String!
+  symbol: String!
+  sector: String!
+  exchange: String!
+  fundamentals: Fundamentals
+  prices: [Price!]
+}
+
+type HistoricalPrice {
+  id: Int!
+  company: Company!
+  price: Float!
+  date: DateTime!
+}
+
+type Query {
+  companies(filter: CompanyFilterInput, sort: CompanySortInput, limit: Int, offset: Int): [Company!]!
+  company(id: Int!): Company
+  companiesMeta: CompanyMeta!
+  allFundamentals: [Fundamentals!]!
+  historicalPrices: [HistoricalPrice!]!
+}
+
+input CompanyFilterInput {
+  pe_lt: Float
+  pe_gt: Float
+  roe_gt: Float
+  marketCap_gt: Float
+  marketCap_lt: Float
+}
+
+input CompanySortInput {
+  sortBy: String!
+  order: String! = "asc"
+}
+
+type Mutation {
+  addCompany(input: CreateCompanyInput!): Company!
+  addFundamentals(input: CreateFundamentalsInput!): Fundamentals!
+}
+
+input CreateCompanyInput {
+  name: String!
+  symbol: String!
+  sector: String!
+  exchange: String!
+}
+
+input CreateFundamentalsInput {
+  companyId: Int!
+  pe_ratio: Float
+  pb_ratio: Float
+  roe: Float
+  roce: Float
+  debt_to_equity: Float
+  dividend_yield: Float
+  sales_growth_3yr: Float
+  profit_growth_3yr: Float
+  sales_growth_5yr: Float
+  profit_growth_5yr: Float
+}
