@@ -1,0 +1,57 @@
+.header2 {
+    font-size: 13px;
+    background-color: #fff;
+    color: #333;
+}
+
+:global(.dark) .header2 {
+    background-color: #111;
+    color: #ccc;
+}
+
+.stats a {
+    margin-left: 4px;
+    text-decoration: none;
+}
+
+:global(.dark) .stats a {
+    color: #61dafb;
+}
+
+.up {
+    color: #16c784;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.down {
+    color: #ea3943;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.getListedBtn,
+.apiBtn {
+    background-color: #f1f3f5;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.getListedBtn:hover,
+.apiBtn:hover {
+    background-color: #e2e6ea;
+}
+
+:global(.dark) .getListedBtn,
+:global(.dark) .apiBtn {
+    background-color: #333;
+    color: #fff;
+}
+
+:global(.dark) .getListedBtn:hover,
+:global(.dark) .apiBtn:hover {
+    background-color: #444;
+}
